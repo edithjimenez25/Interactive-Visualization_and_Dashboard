@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bellybutton Biodiversity</title>
+  <link rel="shortcut icon" type="image/x-icon" href="https://c8.alamy.com/comp/2AC7N4Y/virus-flat-linear-long-shadow-icon-bacteria-germ-bacillus-round-green-microorganism-vector-line-symbol-2AC7N4Y.jpg">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body style="background-color: #dff9fb;">
+
+  <div class="container" style="background-color: #dff9fb;">
+    <div class="row">
+
+      <div class="col-md-12 jumbotron text-center" style="background-image: url(./images/Belly-Button-Biodiversity.jpg); background-size:cover; background-position: center; height:300px;">
+        <h1 style="color:#c23616 ; font-size: 50px; font-weight: 600; border-radius: 0ch; ">Belly Button Biodiversity Dashboard</h1><br>
+        <p style="color:#EA2027; font-size: 24px; font-weight: 600;"> Use the interactive charts below to explore the dataset</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="well" style="background-color: #c7ecee;">
+          <h5>Test Subject ID No.:</h5>
+          <select id="selDataset" style="background-color: #22a6b3;" onchange="optionChanged(this.value)"></select>
+        </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading" style="background-color: #22a6b3;">
+            <h3 class="panel-title">Demographic Info</h3>
+          </div>
+          <div id="sample-metadata" class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./static/js/app.js"></script>
+  <!-- <script src="./static/js/bonus.js"></script> -->
+
+</body>
+
+</html>
