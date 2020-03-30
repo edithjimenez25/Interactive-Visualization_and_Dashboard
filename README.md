@@ -1,4 +1,4 @@
-# Interactive-Vusualization_and_Dashboard
+# Interactive-Visualization_and_Dashboard
 
 # Plot.ly Homework - Belly Button Biodiversity
 
