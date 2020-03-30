@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Bellybutton Biodiversity</title>
-  <link rel="shortcut icon" type="image/x-icon" href="https://c8.alamy.com/comp/2AC7N4Y/virus-flat-linear-long-shadow-icon-bacteria-germ-bacillus-round-green-microorganism-vector-line-symbol-2AC7N4Y.jpg">
+  <link rel="shortcut icon" type="image/x-icon" href="./images/bacteria_icon.jpg">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-md-2">
         <div class="well" style="background-color: #c7ecee;">
-          <h5>Test Subject ID No.:</h5>
+          <h5>Test Subject ID:</h5>
           <select id="selDataset" style="background-color: #22a6b3;" onchange="optionChanged(this.value)"></select>
         </div>
         <div class="panel panel-primary">
@@ -31,6 +31,17 @@
             <h3 class="panel-title">Demographic Info</h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
+          <!-- Start table metadata -->
+          <ul>
+            <li>Subject id:<span id="subjectid"></span></li>
+            <li>Age:<span id="age"></span></li>
+            <li>Gender:<span id="gender"></span></li>
+            <li>Ethnicity:<span id="ethnicity" ></span></li>
+            <li>Blood Type:<span id="bbtype"></span></li>
+            <li>Wash Freq:<span id="wfreq"></span></li>
+            <li>Location:<span id="location"></span></li>
+          </ul>
+          <!-- End table metadata -->
         </div>
       </div>
       <div class="col-md-5">
