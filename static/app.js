@@ -20,9 +20,6 @@
 function buildMetadata(selectSubject) {
   d3.json("/data/samples.json").then(function(allData) {
 
-    // bring data
-    // let data = allData;
-
     // Assign var to the metadata sample
     var sampleMetadata = allData.metadata;
 
@@ -111,35 +108,35 @@ function buildCharts(selectSubject) {
     
 
 
-/************************************************************************************
- * Build Bubble Chart for selected 'Subject id'                                     *
- ************************************************************************************/
-//R3. Create a bubble chart that displays each sample.
-     // * Use `otu_ids` for the x values.
-     // * Use `sample_values` for the y values.
-     // * Use `sample_values` for the marker size.
-     // * Use `otu_ids` for the marker colors.
-     // * Use `otu_labels` for the text values.
-     
-    // Create a trace object with the data
-    var trace2 = {
-      y: sample_values,
-      x: otu_ids_values,
-      text: otu_label_values,
-      mode: 'markers',
-      marker: {
-        color: m_colors,
-        size: m_size,
-      },
-    };
+  /************************************************************************************
+   * Build Bubble Chart for selected 'Subject id'                                     *
+   ************************************************************************************/
+  // R3. Create a bubble chart that displays each sample.
+      // * Use `otu_ids` for the x values.
+      // * Use `sample_values` for the y values.
+      // * Use `sample_values` for the marker size.
+      // * Use `otu_ids` for the marker colors.
+      // * Use `otu_labels` for the text values.
+      
+      // Create a trace object with the data
+      var trace2 = {
+        y: sample_values,
+        x: otu_ids_values,
+        text: otu_label_values,
+        mode: 'markers',
+        marker: {
+          color: m_colors,
+          size: m_size,
+        },
+      };
 
-    var data = [trace2];
+      var data = [trace2];
 
-    var layout = {
-      xaxis: { title: "OTU ID"},
-    };
+      var layout = {
+        xaxis: { title: "OTU ID"},
+      };
 
-    Plotly.newPlot('bubble', data, layout);
+      Plotly.newPlot('bubble', data, layout);
 
   }); 
 }
@@ -204,103 +201,108 @@ init();
  * Generate the Gauge to measure the washing frequency of the Belly Button                                                   *
  ************************************************************************************/
 
-
-/************************************************************************************
- * Bonus:
- * Generate the Gauge to measure the washing frequency of the Belly Button                                                   *
- ************************************************************************************/
-
 function buildGauge(wfreq) {
-  // Enter the washing frequency between 0 and 180 (half of a circle 360 degree)
-  var level = parseFloat(wfreq) * 20;
-    
-  // Calculate using trigonometric the meter points for gauge
+  // Use d3.Json to fetch the sample panel values in the samples.
+  // d3.json("/data/samples.json").then(function(allData) {    
 
-  // dregree of the circle i.e half of circle
-  var degrees = 180 - level;
-  // radius of the circle
-  var radius = 0.5;
-  // Calculate the radians base on the mathematical equation based on 
-  // a full circle has 2PI radians, so for half circle will be 1PI radians
-  var radians = (degrees * Math.PI) / 180;
-  var x = radius * Math.cos(radians);
-  var y = radius * Math.sin(radians);
+    // Assign var to the metadata sample where washing frequency (wfreq) values are
+    var sampleMetadata= allData.metadata;
 
-  // Adjust the triangle
-  var mainPath = "M -.0 -0.05 L .0 0.05 L ";
-  var pathX = String(x);
-  var space = " ";
-  var pathY = String(y);
-  var pathEnd = " Z";
-  var path = mainPath.concat(pathX, space, pathY, pathEnd);
+    // Filter the metadata to get the washing frequency (wfreq)
+    // var filteredFrequency = sampleMetadata.filter(y => y.wfreq == selectSubject);
+    // var targetFrequency = filteredFrequency[0];
+    // var wfreq = targetFrequency.wfreq.slice(0,10); 
 
-  var data = [{
-      type: "scatter",
-      x: [0],
-      y: [0],
-      marker: { size: 12, color: "850000" },
-      showlegend: false,
-      name: "Freq",
-      text: level,
-      hoverinfo: "text+name"
-    },
-    {
-      values: [50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50],
-      rotation: 90,
-      text: ["8-9", "7-8", "6-7", "5-6", "4-5", "3-4", "2-3", "1-2", "0-1", ""],
-      textinfo: "text",
-      textposition: "inside",
-      marker: {
-        colors: [
-          "#006266",
-          "#447741",
-          "#316033", 
-          "#5D8700",
-          "#82B300",
-          "#A5D721", 
-          "#BEED53",
-          "#D6FA8C",
-          "#EEFFBA",
-          "white",   
-         
-        ]
+    // Enter the washing frequency between 0 and 180 (half of a circle 360 degree)
+    var gaugeLevel = parseFloat(wfreq) * 20;
+      
+    // Calculate using trigonometric the meter points for gauge
+    // dregree of the circle i.e half of circle
+    var degrees = 180 - gaugeLevel;
+    // radius of the circle
+    var radius = 0.5;
+    // Calculate the radians base on the mathematical equation based on 
+    // a full circle has 2PI radians, so for half circle will be 1PI radians
+    var radians = (degrees * Math.PI) / 180;
+    var x = radius * Math.cos(radians);
+    var y = radius * Math.sin(radians);
+
+    // Adjust the triangle
+    var mainPath = "M -.0 -0.05 L .0 0.05 L ";
+    var pathX = String(x);
+    var space = " ";
+    var pathY = String(y);
+    var pathEnd = " Z";
+    var path = mainPath.concat(pathX, space, pathY, pathEnd);
+
+    var data = [{
+        type: "scatter",
+        x: [0],
+        y: [0],
+        marker: { size: 12, color: "850000" },
+        showlegend: false,
+        name: "Freq",
+        text: gaugeLevel,
+        hoverinfo: "text+name"
       },
-      labels: ["8-9", "7-8", "6-7", "5-6", "4-5", "3-4", "2-3", "1-2", "0-1", ""],
-      hoverinfo: "label",
-      hole: 0.5,
-      type: "pie",
-      showlegend: false
-    }
-  ];
-
-  var layout = {
-    shapes: [
       {
-        type: "path",
-        path: path,
-        fillcolor: "850000",
-        line: {
-          color: "850000"
-        }
+        values: [50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50],
+        rotation: 90,
+        text: ["8-9", "7-8", "6-7", "5-6", "4-5", "3-4", "2-3", "1-2", "0-1", ""],
+        textinfo: "text",
+        textposition: "inside",
+        marker: {
+          colors: [
+            "#006266",
+            "#447741",
+            "#316033", 
+            "#5D8700",
+            "#82B300",
+            "#A5D721", 
+            "#BEED53",
+            "#D6FA8C",
+            "#EEFFBA",
+            "white",   
+          
+          ]
+        },
+        labels: ["8-9", "7-8", "6-7", "5-6", "4-5", "3-4", "2-3", "1-2", "0-1", ""],
+        hoverinfo: "label",
+        hole: 0.5,
+        type: "pie",
+        showlegend: false
       }
-    ],
-    title: "<b>Belly Button Washing Frequency</b><br><br><br><br><br><br><br><br><br><br><br>Scrubs per Week",
-    height: 450,
-    width: 450,
-    xaxis: {
-      zeroline: false,
-      showticklabels: false,
-      showgrid: false,
-      range: [-1, 1]
-    },
-    yaxis: {
-      zeroline: false,
-      showticklabels: false,
-      showgrid: false,
-      range: [-1, 1]
-    }
-  };
+    ];
 
-  var GAUGE = document.getElementById("gauge");
-  Plotly.newPlot(GAUGE, data, layout);
+    var layout = {
+      shapes: [
+        {
+          type: "path",
+          path: path,
+          fillcolor: "850000",
+          line: {
+            color: "850000"
+          }
+        }
+      ],
+      title: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week",
+      height: 450,
+      width: 450,
+      xaxis: {
+        zeroline: false,
+        showticklabels: false,
+        showgrid: false,
+        range: [-1, 1]
+      },
+      yaxis: {
+        zeroline: false,
+        showticklabels: false,
+        showgrid: false,
+        range: [-1, 1]
+      }
+    };
+
+    var GAUGE = document.getElementById("gauge");
+    Plotly.newPlot(GAUGE, data, layout);
+
 }
