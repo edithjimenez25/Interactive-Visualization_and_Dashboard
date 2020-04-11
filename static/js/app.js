@@ -148,7 +148,7 @@ function buildCharts(selectSubject) {
 // R4. Display the sample metadata, i.e., an individual's demographic information.
 function init() {
   // Grab a reference to the dropdown select the Test 'Subject ID'
-  var subjectID = d3.select("#selDataset");
+  //var subjectID = d3.select("#selDataset");
 
   /* Use the list of sample names to populate the select options and
      define the var for each of the panel of data in samples */ 
