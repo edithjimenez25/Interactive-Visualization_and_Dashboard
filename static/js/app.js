@@ -148,7 +148,7 @@ function buildCharts(selectSubject) {
 // R4. Display the sample metadata, i.e., an individual's demographic information.
 function init() {
   // Grab a reference to the dropdown select the Test 'Subject ID'
-  //var subjectID = d3.select("#selDataset");
+  var subjectID = d3.select("#selDataset");
 
   /* Use the list of sample names to populate the select options and
      define the var for each of the panel of data in samples */ 
@@ -186,8 +186,9 @@ function init() {
 // R6. Update all of the plots any time that a new sample is selected. 
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
-  // buildCharts(newSample);
+  buildCharts(newSample);
   buildMetadata(newSample);
+  buildGauge(wfreq);
 }
 
 /************************************************************************************
@@ -206,7 +207,7 @@ function buildGauge(wfreq) {
   // d3.json("/data/samples.json").then(function(allData) {    
 
     // Assign var to the metadata sample where washing frequency (wfreq) values are
-    var sampleMetadata= allData.metadata;
+    // var sampleMetadata= allData.metadata;
 
     // Filter the metadata to get the washing frequency (wfreq)
     // var filteredFrequency = sampleMetadata.filter(y => y.wfreq == selectSubject);
